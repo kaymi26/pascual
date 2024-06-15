@@ -1,0 +1,107 @@
+body {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 35px; 
+    animation: fadeInFromLeft 4s forwards;
+}
+
+p {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 20px; 
+    animation: fadeInFromUp 4s forwards;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.button {
+    padding: 8px 20px;
+    font-size: 14px; 
+    animation: fadeIn 4s forwards;
+}
+
+.button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 30px; 
+    }
+
+    p {
+        font-size: 14px; 
+    }
+
+    .button {
+        margin-top: 25px;
+        font-size: 12px; 
+    }
+
+    .button-container {
+        padding: 5px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+    }
+    to {
+    opacity: 1;
+    }
+    }
+    @keyframes fadeInFromLeft {
+    from {
+    opacity: 0;
+    transform: translateX(-100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateX(0);
+    }
+    }
+    @keyframes fadeInFromRight {
+    from {
+    opacity: 0;
+    transform: translateX(100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateX(0);
+    }
+    }@keyframes fadeInFromUp {
+    from {
+    opacity: 0;
+    transform: translateY(-100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    @keyframes fadeInFromDown {
+    from {
+    opacity: 0;
+    transform: translateY(100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }

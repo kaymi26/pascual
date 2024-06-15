@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+  body {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  h2 {
+    text-align: center;
+
+    animation: fadeIn 4s forwards;
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+
+    animation: fadeIn 4s forwards;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-group .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+  button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .login-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+  .login-link a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+ 
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sign Up</h2>
+  <div class="form-group">
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" required oninput="checkFields()">
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" required oninput="checkFields()">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" required disabled>
+  </div>
+  <div class="form-group">
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" required disabled>
+    <p class="error-message" id="password-error"></p>
+  </div>
+  <button onclick="validateSignUp()">Sign Up</button>
+  <div class="login-link">
+    Already have an account? <a href="login.html">Login here</a>
+  </div>
+</div>
+
+<script>
+function checkFields() {
+  var fullname = document.getElementById('fullname').value.trim();
+  var username = document.getElementById('username').value.trim();
+
+  var passwordField = document.getElementById('password');
+  var confirmPasswordField = document.getElementById('confirm_password');
+
+  if (fullname !== "" && username !== "") {
+    passwordField.disabled = false;
+    confirmPasswordField.disabled = false;
+  } else {
+    passwordField.disabled = true;
+    confirmPasswordField.disabled = true;
+  }
+}
+
+function validateSignUp() {
+  var fullname = document.getElementById('fullname').value.trim();
+  var username = document.getElementById('username').value.trim();
+  var password = document.getElementById('password').value.trim();
+  var confirm_password = document.getElementById('confirm_password').value.trim();
+
+  var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/;
+
+  if (!passwordPattern.test(password)) {
+    document.getElementById('password-error').textContent = "Password must be at least 7 characters long and contain both letters and numbers.";
+    return;
+  }
+
+  if (password !== confirm_password) {
+    document.getElementById('password-error').textContent = "Passwords do not match.";
+    return;
+  }
+
+  var userData = {
+    fullname: fullname,
+    username: username,
+    password: password
+  };
+
+  localStorage.setItem('userData', JSON.stringify(userData));
+
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
